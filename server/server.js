@@ -1,14 +1,17 @@
 const express = require("express")
 const connectiontoDB = require("./config/connectiontoDB")
+const UserModel = require("./models/userModel")
+const UserRoute = require("./routes/UserRoute")
+
 require("dotenv").config()
+
 const app = express()
+app.use(express.json())
 
-app.get("/",(req,res)=>{
-        res.status(200).send({msg:"Server has been setup",data:"Exicited for this??"})
-})
+app.use("/user",UserRoute) // User Route
+
 // connection to db
-
 connectiontoDB()
-app.listen(8081,()=>{
+app.listen(8082,()=>{
     console.log("Server has started Successfully")
 })
